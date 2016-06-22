@@ -8,7 +8,7 @@ do
 	HM=$(echo $DOUT | cut -d '.' -f1)
 	SEC=$(echo $DOUT | cut -d '.' -f2)
 	MIN=$(echo $DOUT | cut -d '.' -f3)
-	TOSEC=$((60-SEC))
+	TOSEC=$((60-10#$SEC))
 ## put stuff you want to run close to every minute on the minute below here
 	LOAD=$(cat /proc/loadavg)
 	POWER=$(acpi)
