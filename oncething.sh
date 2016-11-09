@@ -10,7 +10,9 @@ feh --bg-fill "$FILE"
 ## put stuff you want to run close to every minute on the minute below here
 	LOAD=$(cat /proc/loadavg)
 	POWER=$(acpi)
-	xsetroot -name "`echo $POWER | cut -d ' ' -f4 | cut -d ',' -f1` `echo $LOAD | cut -d ' ' -f1` `echo $LOAD | cut -d ' ' -f4` $HM"
+	MEEM=$(free | grep Mem | awk '{printf "%.1f", $3/$2 * 100.0}')
+	xsetroot -name "`echo $POWER | cut -d ' ' -f4 | cut -d ',' -f1` `echo $LOAD | cut -d ' ' -f1` $MEEM $HM"
+##	xsetroot -name "`echo $POWER | cut -d ' ' -f4 | cut -d ',' -f1` `echo $LOAD | cut -d ' ' -f1` `echo $LOAD | cut -d ' ' -f4` $HM"
 	if [ $MIN -eq 0 ]; then
 	## and hour here
 		FILE=$(find /home/roboman2444/wallpapers/ /mnt/thing1/home/roboman2444/wallpapers/ -type f | shuf -n1)
