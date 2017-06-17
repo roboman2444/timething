@@ -19,7 +19,7 @@ do
 ## put stuff you want to run close to every minute on the minute below here
 	LOAD=$(cat /proc/loadavg)
 	POWER=$(acpi)
-	TEMP=$(sensors -u | grep 'temp1_input' |cut -d ':' -f2 |cut -d ' ' -f2)
+	TEMP=$(sensors -u | grep 'temp1_input' -m1|cut -d ':' -f2 |cut -d ' ' -f2)
 	MEEM=$(free | grep Mem | awk '{printf "%.1f", $3/$2 * 100.0}')
 	xsetroot -name "P`echo $POWER | cut -d ' ' -f4 | cut -d ',' -f1` L`echo $LOAD | cut -d ' ' -f1` T$TEMP M$MEEM $HM"
 	if [ $MIN -eq 0 ]; then
