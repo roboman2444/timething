@@ -1,9 +1,11 @@
 #/bin/sh
 		NUMMONITORS=$(xrandr --query | grep ' connected' -c)
+		SHUFSTRING=$(find /home/roboman2444/wallpapers/ /mnt/thing1/home/roboman2444/wallpapers/ -type f | shuf -n $NUMMONITORS)
 		FEHSTRING=
-		for i in $(seq 1 $NUMMONITORS);
+##		for i in $(seq 1 $NUMMONITORS);
+		for FILE in "${SHUFSTRING[@]}";
 		do
-			FILE=$(find /home/roboman2444/wallpapers/ /mnt/thing1/home/roboman2444/wallpapers/ -type f | shuf -n1)
+##			FILE=$(find /home/roboman2444/wallpapers/ /mnt/thing1/home/roboman2444/wallpapers/ -type f | shuf -n1)
 			FEHSTRING=$(printf "%s --bg-fill %s" "$FEHSTRING" "$FILE")
 		done
 		feh $FEHSTRING
@@ -23,10 +25,12 @@ do
 	if [ $MIN -eq 0 ]; then
 	## and hour here
 		NUMMONITORS=$(xrandr --query | grep ' connected' -c)
+		SHUFSTRING=$(find /home/roboman2444/wallpapers/ /mnt/thing1/home/roboman2444/wallpapers/ -type f | shuf -n $NUMMONITORS)
 		FEHSTRING=
-		for i in $(seq 1 $NUMMONITORS);
+##		for i in $(seq 1 $NUMMONITORS);
+		for FILE in "${SHUFSTRING[@]}";
 		do
-			FILE=$(find /home/roboman2444/wallpapers/ /mnt/thing1/home/roboman2444/wallpapers/ -type f | shuf -n1)
+##			FILE=$(find /home/roboman2444/wallpapers/ /mnt/thing1/home/roboman2444/wallpapers/ -type f | shuf -n1)
 			FEHSTRING=$(printf "%s --bg-fill %s" "$FEHSTRING" "$FILE")
 		done
 		feh $FEHSTRING
