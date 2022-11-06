@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/bash
 		NUMMONITORS=$(xrandr --query | grep ' connected' -c)
 		SHUFSTRING=$(find /home/roboman2444/wallpapers/ /mnt/thing1/home/roboman2444/wallpapers/ -type f | shuf -n $NUMMONITORS)
 		FEHSTRING=
@@ -19,9 +19,12 @@ do
 ## put stuff you want to run close to every minute on the minute below here
 	LOAD=$(cat /proc/loadavg)
 	POWER=$(acpi)
+	LEVEL=$(echo $POWER | cut -d ',' -f2)
 	TEMP=$(sensors -u | grep 'temp1_input' -m1|cut -d ':' -f2 |cut -d ' ' -f2)
 	MEEM=$(free | grep Mem | awk '{printf "%.1f", $3/$2 * 100.0}')
-	xsetroot -name "P`echo $POWER | cut -d ' ' -f4 | cut -d ',' -f1` L`echo $LOAD | cut -d ' ' -f1` T$TEMP M$MEEM $HM"
+	#xsetroot -name "P`echo $POWER | cut -d ' ' -f4 | cut -d ',' -f1` L`echo $LOAD | cut -d ' ' -f1` T$TEMP M$MEEM $HM
+	xsetroot -name "P`echo $LEVEL` L`echo $LOAD | cut -d ' ' -f1` T$TEMP M$MEEM $HM"
+
 	if [ $MIN -eq 0 ]; then
 	## and hour here
 		NUMMONITORS=$(xrandr --query | grep ' connected' -c)
